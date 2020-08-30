@@ -11,7 +11,7 @@ camera
 #for(i, 0, 8)
 	light_source
 	{
-		y*-10
+		y*-40
 		color White
 		translate z*40
 		rotate y*(i*360/8)
@@ -78,27 +78,7 @@ plane
 				colVSync
 			#end
 			}
-			
-					
 		}
 	#end
-#end    
+#end
 
-
-#declare ScrewMinorRadius = 3.5;
-#declare ScrewMajorRadius = 10; 
-#declare WindingFreq = 10; //Hz   
-                                                              
-        
-                                                     
-#for (phi, 0, 2*pi, 0.001)      
-
-  #declare x_translation = (ScrewMajorRadius + ScrewMinorRadius * cos(2*pi*WindingFreq*phi))*cos(phi); 
-  #declare y_translation = (ScrewMajorRadius + ScrewMinorRadius * cos(2*pi*WindingFreq*phi))*sin(phi);;
-  #declare z_translation = ScrewMinorRadius * sin(2*pi*WindingFreq*phi);
-
-  sphere{ <0,0,0>,0.1
-          pigment{color Red filter 0.1}
-          translate< x_translation, z_translation, y_translation>}
-
-#end   

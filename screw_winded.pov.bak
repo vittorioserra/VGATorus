@@ -1,0 +1,18 @@
+                                                                                                          #declare ScrewMinorRadius = 3.5;
+#declare ScrewMajorRadius = MajorRadius; 
+#declare WindingFreq = 1; //Hz   
+                                                              
+        
+#declare phi = 0;
+                                                              
+#for (phi, 0, 2*pi, 10000*2*pi)      
+
+  #declare x_translation = (ScrewMajorRadius + ScrewMinorRadius * cos(2*pi*WindingFreq*phi))*cos(phi); 
+  #declare y_translation = (ScrewMajorRadius + ScrewMinorRadius * cos(2*pi*WindingFreq*phi))*sin(phi);;
+  #declare z_translation = ScrewMinorRadius * sin(2*pi*WindingFreq*phi);
+
+  sphere{ <0,0,0>,0.025
+          pigment{ color rgb<1,0.65,0>}
+          translate< x_translation, y_translation, z_translation>}
+
+#end

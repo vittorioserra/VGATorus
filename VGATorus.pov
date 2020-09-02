@@ -24,8 +24,12 @@ plane
 	finish { specular .5 reflection .2 }
 }
 
-#declare columns = 640;
-#declare rows = 480;
+#fopen file "pov-image.txt" read
+
+// #declare columns = 640;
+// #declare rows = 480;
+#read (file, columns, rows)
+
 #declare frontPorch = columns*.1;
 #declare backPorch = columns*.15;
 #declare hSync = columns*.2;
@@ -48,7 +52,7 @@ plane
 #declare MajorRadius = 10;
 #declare MinorRadius = 3;
 
-#declare dot = sphere { 0, .1 }
+#declare dot = sphere { 0, .2 }
 
 #declare totalC = columns + frontPorch + backPorch + hSync;
 #declare totalR = rows + vSync;
@@ -68,7 +72,8 @@ plane
 				#if (c < frontPorch)
 					colFrontPorch
 				#elseif (c < frontPorch + columns)
-					colData
+					#read (file, pixelColor)
+					color pixelColor
 				#elseif (c < frontPorch + columns + backPorch)
 					colBackPorch
 				#else
